@@ -1,0 +1,48 @@
+img {
+    width: 75px;
+    height: 75px;
+}
+
+.section-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-news {
+    text-align: center;
+}
+
+.section-data {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 40px;
+}
+
+.section-data > span {
+    margin: 0 10px;
+}
+
+.section-main {
+    display: flex;
+    margin-top: 20px;
+}
+
+.section-main > img {
+    margin: 0 20px;
+}
+
+.section-block > span , a , h5 {
+    font-size: 1.5rem;
+}
+
+.section-block .span-block {
+    width: 100px;
+    height: 40px;
+    background-color: blueviolet;
+    color: white;
+    padding: 5px;
+}
+
+
+
