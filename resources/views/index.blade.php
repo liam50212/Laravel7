@@ -16,7 +16,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('./img/annas-hummingbird-6146187_1920.jpg') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('img/annas-hummingbird-6146187_1920.jpg') }}" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
                 <img src="{{ asset('./img/annas-hummingbird-6146187_1920.jpg') }}" class="d-block w-100" alt="...">

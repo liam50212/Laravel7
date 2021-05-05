@@ -32,7 +32,7 @@
     </p>
 
     <p>百大經典小鎮電子集章活動訊息，請上活動網站查詢。</p>
-    <img src="{{ asset('./img/php-01.jpg') }}" alt="玩遍百大經典小鎮 集章抽好禮" width="70%">
+    <img src="{{ asset('./img/php-index3.jpg') }}" alt="玩遍百大經典小鎮 集章抽好禮" width="70%">
 </div>
 
 @endsection

@@ -14,12 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index2');
+    return view('index');
 });
 
-Route::get('GO', function () {
-    return view('index3');
-});
+Route::get('news','NewsController@index');
+// Route::get('news', function () {
+
+//     return view('/news/index2');
+// });
+
+Route::get('news/detail','NewsController@detail');
+
+
+// Route::get('news/detail', function () {
+//     return view('/news/index3');
+// });
 
 Route::get('test', function () {
 

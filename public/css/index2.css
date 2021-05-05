@@ -34,6 +34,7 @@ img {
 
 .section-block > span , a , h5 {
     font-size: 1.5rem;
+    margin: 20px 0;
 }
 
 .section-block .span-block {
