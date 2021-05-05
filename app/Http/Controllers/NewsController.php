@@ -41,9 +41,9 @@ class NewsController extends Controller
 
     public function detail($id)
     {
-        $newsData = DB::table('news')
+        $newsDetail= DB::table('news')
         ->find($id);
-        return view('news.index3',compact('newsData'));
+        return view('news.index3',compact('newsDetail'));
     }
 
 }
