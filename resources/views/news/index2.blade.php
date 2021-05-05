@@ -18,19 +18,24 @@
         <span>目前頁次：1</span>
     </div>
     <hr>
-    <div class="section-main">
-        <img src="{{ asset('./img/php-01.jpg') }}" style="width: 400px; height: 300px;" alt="">
-        <div class="section-block">
-            <span class="span-block">最新消息</span><br><br>
-            <a href="/news/detail">
+</div>
+<section class="section-main">
+    @foreach ($newsData as $news)
+    <div class="main-text" style="display: flex">
+        <img src="{{$news->img}}" style="width: 400px; height: 300px;" alt="">
+        <div class="section-block" style="margin-left: 50px">
+            <span class="span-block">{{$news->tittle}}</span><br><br>
+            <a href="/news/detail/{id}">
                 <span>經典小鎮升級3.0正式開跑　小鎮逗鎮趣 集章抽好禮</span>
             </a>
-            <h5>2021-05-03</h5>
-            <h5>為推動「小鎮漫遊」，交通部觀光局於108年配合「小鎮漫遊年」遴選40個特色小鎮，109年延續小鎮熱潮，配合「脊梁山脈旅遊年」遴選出30個經典/山城小鎮，今（110）年配合「自行車旅遊年」遴選出30個經典/自行車小鎮，邀請大家慢騎自行車小鎮，領略小鎮在地之美...</h5>
+            <h5>{{$news->date}}</h5>
+            <h5>{{$news->content}}</h5>
         </div>
-    </div>
+    </div>   
     <hr>
-</div>
+    @endforeach
+<section>
+
 
 @endsection
 

@@ -24,8 +24,12 @@ img {
 }
 
 .section-main {
-    display: flex;
     margin-top: 20px;
+}
+
+.main-text {
+    justify-content: center;
+    align-items: center;
 }
 
 .section-main > img {
@@ -43,6 +47,7 @@ img {
     background-color: blueviolet;
     color: white;
     padding: 5px;
+    flex: 1;
 }
 
 

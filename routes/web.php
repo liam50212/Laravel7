@@ -23,7 +23,13 @@ Route::get('news','NewsController@index');
 //     return view('/news/index2');
 // });
 
-Route::get('news/detail','NewsController@detail');
+Route::get('news/create','NewsController@create');
+
+Route::get('news/update/{id}','NewsController@update');
+
+Route::get('news/delete/{id}','NewsController@delete');
+
+Route::get('news/detail/{id}','NewsController@detail');
 
 
 // Route::get('news/detail', function () {

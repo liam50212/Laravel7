@@ -9,7 +9,7 @@
 <div class="section-tittle">
     <div class="tittle-top">經典小鎮升級3.0正式開跑　小鎮逗鎮趣 集章抽好禮</div>
     <span>發布日期：2021-05-03</span>
-    <span>瀏覽次數：304</span>
+    <span>瀏覽次數:99999</span>
 </div>
 <hr>
 <div class="section-text">
