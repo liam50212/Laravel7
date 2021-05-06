@@ -2,47 +2,60 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class NewsController extends Controller
 {
     //
     public function index()
     {
-        $newsData = DB::table('news')->get();
+        $newsData = News::get();
+        
         return view('news.index2',compact('newsData'));
     }
 
     public function create()
     {
-        DB::table('news')->insert([
-            'tittle'=>'abc',
-            'date'=>'2021-05-05',
-            'img'=>'https://www.taiwan.net.tw/pic.ashx?qp=/0040115/13_0040115.jpg&sizetype=2',
-            'content'=>'asdadasdasdasdasdasd',
-            'views'=>0
-        ]);
+        return view('news.create_news');
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        // News::create([
+        //     'tittle'=>$request->tittle,
+        //     'date'=>$request->date,
+        //     'img'=>$request->img,
+        //     'content'=>$request->content
+        // ]);
+
+        $data = $request->all();
+        News::create($data);
+        return redirect('/news');
+    }
+
+    public function edit()
+    {
+       return view('news.edit');
     }
 
     public function update($id)
     {
-        DB::table('news')
-        ->where('id',$id)
-        ->update(['tittle' => '999999']);
+        News::where('id',$id)
+        ->update(['tittle' => '王']);
     }
 
     public function delete($id)
     {
-        DB::table('news')
-        ->where('id',$id)
+        News::where('id',$id)
         ->delete();
     }
 
     public function detail($id)
     {
-        $newsDetail= DB::table('news')
-        ->find($id);
+        $newsDetail = News::find($id);
         return view('news.index3',compact('newsDetail'));
     }
 

@@ -18,12 +18,12 @@ Route::get('/', function () {
 });
 
 Route::get('news','NewsController@index');
-// Route::get('news', function () {
-
-//     return view('/news/index2');
-// });
 
 Route::get('news/create','NewsController@create');
+
+Route::post('news/store','NewsController@store');
+
+Route::get('news/edit','NewsController@edit');
 
 Route::get('news/update/{id}','NewsController@update');
 

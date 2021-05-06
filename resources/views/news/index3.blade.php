@@ -9,7 +9,7 @@
 <div class="section-tittle">
     <div class="tittle-top">{{$newsDetail->tittle}}</div>
     <span>發布日期：{{$newsDetail->date}}</span>
-    <span>瀏覽次數:{{$newsDetail->views}}</span>
+    <span>瀏覽次數:{{$newsDetail->view}}</span>
 </div>
 <hr>
 <div class="section-text">

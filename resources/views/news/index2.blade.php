@@ -25,7 +25,7 @@
         <img src="{{$news->img}}" style="width: 400px; height: 300px;" alt="">
         <div class="section-block" style="margin-left: 50px">
             <span class="span-block">{{$news->tittle}}</span><br><br>
-            <a href="/news/detail/{id}">
+            <a href="/news/detail/{{$news->id}}">
                 <span>經典小鎮升級3.0正式開跑　小鎮逗鎮趣 集章抽好禮</span>
             </a>
             <h5>{{$news->date}}</h5>
