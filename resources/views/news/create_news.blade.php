@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-    <form action="/news/store" method="GET">
+    <form action="/news/store" method="POST">
         @csrf
         <div class="form-group">
             <label for="tittle">標題</label>

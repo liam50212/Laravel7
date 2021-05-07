@@ -530,21 +530,32 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465741.94049083797!2d120.6756895472467!3d24.220473068589154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346917dff97922ef%3A0x87523ee47ea6447f!2z5Y-w5Lit5biC!5e0!3m2!1szh-TW!2stw!4v1617955660347!5m2!1szh-TW!2stw"
             width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
-    <div class="container container-map d-flex justify-content-center justify-content-md-end position-absolute">
+    <div class="container container-map d-flex justify-content-center justify-content-md-end position-absolute" style="top: 5px">
         <div class="p-3 bg-white">
             <form>
-                <h5>Feedback</h5>
-                <p class="mb-0">Post-ironic portland shabby chic echo park, banjo fashion</p>
-                <p>axe</p>
+                <h5>Contect Us</h5>
+                {{-- <p class="mb-0">Post-ironic portland shabby chic echo park, banjo fashion</p>
+                <p>axe</p> --}}
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
+                    <label for="exampleInputEmail1">姓名</label>
                     <input type="email" class="form-control" id="exampleInputEmail1"
                         aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Message</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="exampleInputPassword1">E-mail</label>
+                    <input type="" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">電話</label>
+                    <input type="" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">主旨</label>
+                    <input type="" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">內容</label>
+                    <input type="" class="form-control" id="exampleInputPassword1">
                 </div>
                 <button type="submit" class="btn btn-lg btn-block btn-primary mb-2">Button</button>
                 <h6 style="font-size: 5px;">Chicharrones blog helvetica normcore iceland tousled brook viral

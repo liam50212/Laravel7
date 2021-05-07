@@ -23,13 +23,18 @@ Route::get('news/create','NewsController@create');
 
 Route::post('news/store','NewsController@store');
 
-Route::get('news/edit','NewsController@edit');
+Route::get('news/edit/{id}','NewsController@edit');
 
-Route::get('news/update/{id}','NewsController@update');
+Route::post('news/update/{id}','NewsController@update');
 
 Route::get('news/delete/{id}','NewsController@delete');
 
 Route::get('news/detail/{id}','NewsController@detail');
+
+
+
+
+Route::get('contact','ContactController@index');
 
 
 // Route::get('news/detail', function () {

@@ -31,26 +31,29 @@ class NewsController extends Controller
         //     'content'=>$request->content
         // ]);
 
-        $data = $request->all();
-        News::create($data);
+        // $data = $request->all();
+        News::create($request->all());
         return redirect('/news');
     }
 
-    public function edit()
+    public function edit($id)
     {
-       return view('news.edit');
+        $news = News::find($id);
+        return view('news.edit_news',compact('news'));
     }
 
-    public function update($id)
+    public function update($id,Request $request)
     {
-        News::where('id',$id)
-        ->update(['tittle' => '王']);
+        // dd($request->all());
+        News::where('id',$id)->first()->update($request->all());
+        // News::find('id',$id)->update($request->all());
+        return redirect('/news');
     }
 
     public function delete($id)
     {
-        News::where('id',$id)
-        ->delete();
+        News::destroy($id);
+        return redirect('/news');
     }
 
     public function detail($id)

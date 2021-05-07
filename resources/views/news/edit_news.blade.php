@@ -5,22 +5,23 @@
 @endsection
 
 @section('main')
-    <form action="/news/edit" method="POST">
+    <form action="/news/update/{{$news->id}}" method="POST">
+        @csrf
         <div class="form-group">
             <label for="tittle">標題</label>
-            <input type="text" id="tittle" name="tittle">
+            <input type="text" id="tittle" name="tittle" value="{{$news->tittle}}">
         </div>
         <div class="form-group">
             <label for="">時間</label>
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" value="{{$news->date}}">
         </div>
         <div class="form-group">
             <label for="">圖片</label>
-            <input type="text" id="img" name="img">
+            <input type="text" id="img" name="img" value="{{$news->img}}">
         </div>
         <div class="form-group">
             <label for="">內容</label>
-            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            <textarea name="content" id="content" cols="30" rows="10">{{$news->content}}</textarea>
         </div>
         <button type="submit">送出</button>
     </form>
