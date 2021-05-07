@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,24 +19,38 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('news','NewsController@index');
+Route::prefix('news')->group(function () {
+    
+    Route::get('/','NewsController@index');
+    
+    Route::get('/detail/{id}','NewsController@detail');
+    
+    Route::middleware('auth')->group(function () {
 
-Route::get('news/create','NewsController@create');
+        Route::get('/create','NewsController@create');
+        
+        Route::post('/store','NewsController@store');
+        
+        Route::get('/edit/{id}','NewsController@edit');
+        
+        Route::post('/update/{id}','NewsController@update');
+        
+        Route::get('/delete/{id}','NewsController@delete');
+        
+    });
+});
 
-Route::post('news/store','NewsController@store');
 
-Route::get('news/edit/{id}','NewsController@edit');
 
-Route::post('news/update/{id}','NewsController@update');
-
-Route::get('news/delete/{id}','NewsController@delete');
-
-Route::get('news/detail/{id}','NewsController@detail');
 
 
 
 
 Route::get('contact','ContactController@index');
+
+Route::get('contact/create','ContactController@create');
+
+Route::post('contact/store','ContactController@store');
 
 
 // Route::get('news/detail', function () {
@@ -78,3 +94,7 @@ Route::get('lesson1',function(){
 
     // return 'hello world!!';
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

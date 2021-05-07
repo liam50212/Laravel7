@@ -532,30 +532,30 @@
     </div>
     <div class="container container-map d-flex justify-content-center justify-content-md-end position-absolute" style="top: 5px">
         <div class="p-3 bg-white">
-            <form>
+            <form action="/contact/store" method="POST">
+                @csrf
                 <h5>Contect Us</h5>
                 {{-- <p class="mb-0">Post-ironic portland shabby chic echo park, banjo fashion</p>
                 <p>axe</p> --}}
                 <div class="form-group">
-                    <label for="exampleInputEmail1">姓名</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1"
-                        aria-describedby="emailHelp">
+                    <label for="exampleInputPassword1">姓名</label>
+                    <input type="" class="form-control" id="" name="name">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">E-mail</label>
-                    <input type="" class="form-control" id="exampleInputPassword1">
+                    <input type="" class="form-control" id="exampleInputPassword1" name="E-mail">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">電話</label>
-                    <input type="" class="form-control" id="exampleInputPassword1">
+                    <input type="" class="form-control" id="exampleInputPassword1" name="phone">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">主旨</label>
-                    <input type="" class="form-control" id="exampleInputPassword1">
+                    <input type="" class="form-control" id="exampleInputPassword1" name="title">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">內容</label>
-                    <input type="" class="form-control" id="exampleInputPassword1">
+                    <input type="" class="form-control" id="exampleInputPassword1" name="content">
                 </div>
                 <button type="submit" class="btn btn-lg btn-block btn-primary mb-2">Button</button>
                 <h6 style="font-size: 5px;">Chicharrones blog helvetica normcore iceland tousled brook viral

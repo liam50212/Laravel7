@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-05-06 11:04:10
+-- 產生時間： 2021-05-07 10:51:35
 -- 伺服器版本： 10.4.18-MariaDB
 -- PHP 版本： 7.4.16
 
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `contact_us`
+--
+
+CREATE TABLE `contact_us` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `E-mail` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `contact_us`
+--
+
+INSERT INTO `contact_us` (`id`, `name`, `E-mail`, `phone`, `title`, `content`, `created_at`, `updated_at`) VALUES
+(1, 'a', 'a', 'a', NULL, 'a', '2021-05-06 21:54:35', '2021-05-06 21:54:35'),
+(2, 'd', 'd', 'd', NULL, 'd', '2021-05-06 21:56:06', '2021-05-06 21:56:06'),
+(3, 'dasasda', 'd', 'd', NULL, 'd', '2021-05-06 21:56:20', '2021-05-06 21:56:20'),
+(4, 'dasasda', 'd', 'd', NULL, 'd', '2021-05-06 21:56:49', '2021-05-06 21:56:49'),
+(5, 'dasasda', 'd', 'd', 'd', 'd', '2021-05-06 22:04:21', '2021-05-06 22:04:21'),
+(6, '121', '212', '121212', '121212', '121212', '2021-05-06 22:04:27', '2021-05-06 22:04:27'),
+(7, '121', '212', '121212', '121212', '121212', '2021-05-06 22:07:02', '2021-05-06 22:07:02'),
+(8, '121', '212', '121212', '121212', '121212', '2021-05-06 22:13:51', '2021-05-06 22:13:51'),
+(9, 'dasasda', 'bbb', 'bbb', 'bb', 'bbbb', '2021-05-06 22:14:00', '2021-05-06 22:14:00');
 
 -- --------------------------------------------------------
 
@@ -57,7 +89,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2019_08_19_000000_create_failed_jobs_table', 1),
 (3, '2021_05_06_020355_create_news_table', 1),
 (5, '2021_05_06_031422_remove_tag_from_news_table', 3),
-(9, '2021_05_06_033646_update_tittle_to_news_table', 5);
+(9, '2021_05_06_033646_update_tittle_to_news_table', 5),
+(10, '2021_05_06_024533_add_tag_to_news_table', 6),
+(11, '2021_05_07_051401_create_contact_us_table', 6),
+(12, '2014_10_12_100000_create_password_resets_table', 7);
 
 -- --------------------------------------------------------
 
@@ -73,20 +108,28 @@ CREATE TABLE `news` (
   `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `view` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `tag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `news`
 --
 
-INSERT INTO `news` (`id`, `tittle`, `date`, `img`, `content`, `view`, `created_at`, `updated_at`) VALUES
-(1, '我是標題', '2022-05-06', 'https://www.taiwan.net.tw/pic.ashx?qp=/0040111/13_0040111.jpg&sizetype=2', 'opopopopopopopopopopop', 999, NULL, NULL),
-(2, '王', '2021-07-07', 'https://www.taiwan.net.tw/pic.ashx?qp=/0040115/13_0040115.jpg&sizetype=2', 'yyyyyyyyyyyyyy', 0, NULL, '2021-05-05 22:40:39'),
-(3, '海王', '2021-07-07', 'https://www.taiwan.net.tw/pic.ashx?qp=/0040115/13_0040115.jpg&sizetype=2', 'yyyyyyyyyyyyyy', 0, '2021-05-05 22:10:10', '2021-05-05 22:40:11'),
-(14, 'kkkkkkkkkkkkkk', '2021-07-07', 'https://www.taiwan.net.tw/pic.ashx?qp=/0040115/13_0040115.jpg&sizetype=2', 'yyyyyyyyyyyyyy', 0, '2021-05-05 22:40:06', '2021-05-05 22:40:06'),
-(15, 'oooooo', '2021-05-20', '21212', '12111', 0, '2021-05-05 23:26:25', '2021-05-05 23:26:25'),
-(16, '45431321321', '2021-05-20', '21212', '1321321321321321as32d123a1ds23a1d32as1d321as32d132as1d32asdasdas', 0, '2021-05-05 23:26:46', '2021-05-05 23:26:46');
+INSERT INTO `news` (`id`, `tittle`, `date`, `img`, `content`, `view`, `created_at`, `updated_at`, `tag`) VALUES
+(22, 'dddd', '2021-04-25', 'qqqqq', 'bbbbbb', 0, '2021-05-06 20:10:01', '2021-05-06 20:10:01', '');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -106,8 +149,21 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- 傾印資料表的資料 `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'test', 'test@gmail.com', NULL, '$2y$10$DtsD1hD2FPQdHPYv1bIZv.3K/Y7Aa4A8crO2wuAT.pOAeAFrCG/DO', NULL, '2021-05-07 00:41:34', '2021-05-07 00:41:34');
+
+--
 -- 已傾印資料表的索引
 --
+
+--
+-- 資料表索引 `contact_us`
+--
+ALTER TABLE `contact_us`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `failed_jobs`
@@ -128,6 +184,12 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
 -- 資料表索引 `users`
 --
 ALTER TABLE `users`
@@ -139,6 +201,12 @@ ALTER TABLE `users`
 --
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `contact_us`
+--
+ALTER TABLE `contact_us`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -148,19 +216,19 @@ ALTER TABLE `failed_jobs`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
