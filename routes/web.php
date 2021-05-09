@@ -36,6 +36,8 @@ Route::prefix('news')->group(function () {
         Route::post('/update/{id}','NewsController@update');
         
         Route::get('/delete/{id}','NewsController@delete');
+
+        Route::get('test','NewsController@test');
         
     });
 });

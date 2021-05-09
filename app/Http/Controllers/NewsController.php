@@ -62,4 +62,10 @@ class NewsController extends Controller
         return view('news.index3',compact('newsDetail'));
     }
 
+    public function test()
+    {
+        $newsData = News::get();
+        return view('news.test',compact('newsData'));
+    }
+
 }
