@@ -6,22 +6,34 @@ use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
+
 class NewsController extends Controller
 {
     //
     public function index()
     {
         $newsData = News::get();
-        return view('admin.news.index',compact('newsData'));
+        
+        return view('news.index2',compact('newsData'));
     }
 
     public function create()
     {
-        return view('admin.news.create');
+        return view('news.create_news');
     }
 
     public function store(Request $request)
     {
+        // dd($request->all());
+        // News::create([
+        //     'tittle'=>$request->tittle,
+        //     'date'=>$request->date,
+        //     'img'=>$request->img,
+        //     'content'=>$request->content
+        // ]);
+
+        // $data = $request->all();
+
         $requsetData = $request->all();
         
         if($request->hasFile('img')) {
@@ -31,17 +43,19 @@ class NewsController extends Controller
         }        
         
         News::create($requsetData);
-        return redirect('/admin/news');
+        return redirect('/news');
     }
 
     public function edit($id)
     {
         $news = News::find($id);
-        return view('admin.news.edit',compact('news'));
+        return view('news.edit_news',compact('news'));
     }
 
     public function update($id,Request $request)
     {
+        // dd($request->all());
+        // News::find('id',$id)->update($request->all());
         $item = News::find($id);
 
         $requsetData = $request->all();
@@ -54,19 +68,30 @@ class NewsController extends Controller
         }
 
         $item->update($requsetData);
-        return redirect('/admin/news');
+        return redirect('/news');
     }
 
     public function delete($id)
     {
-        // $item = News::find($id);
-        // $old_image = $item->img;
-        // if(file_exists(public_path().$old_image)){
-        //     File::delete(public_path().$old_image);
-        // }
-        // $item->delete();
-        News::find($id)->delete();
-        return redirect('/admin/news');
+        $item = News::find($id);
+        $old_image = $item->img;
+        if(file_exists(public_path().$old_image)){
+            File::delete(public_path().$old_image);
+        }
+        $item->delete();
+        return redirect('/news');
+    }
+
+    public function detail($id)
+    {
+        $newsDetail = News::find($id);
+        return view('news.index3',compact('newsDetail'));
+    }
+
+    public function test()
+    {
+        $newsData = News::get();
+        return view('news.test2',compact('newsData'));
     }
 
     private function fileUpload($file,$dir){
@@ -87,4 +112,5 @@ class NewsController extends Controller
         //回傳 資料庫儲存用的路徑格式
         return '/upload/'.$dir.'/'.$filename;
     }
+
 }

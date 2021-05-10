@@ -7,7 +7,7 @@
 
 @section('main')
 <div class="section-tittle">
-    <div class="tittle-top">{{$newsDetail->tittle}}</div>
+    <div class="tittle-top">{{$newsDetail->title}}</div>
     <span>發布日期：{{$newsDetail->date}}</span>
     <span>瀏覽次數:{{$newsDetail->view}}</span>
 </div>

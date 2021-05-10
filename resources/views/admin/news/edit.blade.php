@@ -5,11 +5,11 @@
 @endsection
 
 @section('main')
-    <form action="/news/update/{{$news->id}}" method="POST" enctype="multipart/form-data">
+    <form action="/admin/news/update/{{$news->id}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="tittle">標題</label>
-            <input type="text" id="tittle" name="tittle" value="{{$news->tittle}}">
+            <label for="title">標題</label>
+            <input type="text" id="title" name="title" value="{{$news->title}}">
         </div>
         <div class="form-group">
             <label for="">時間</label>

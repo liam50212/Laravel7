@@ -1,10 +1,11 @@
 <?php
 
+use Doctrine\DBAL\Schema\Schema as SchemaSchema;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsTable extends Migration
+class CreatNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +15,12 @@ class CreateNewsTable extends Migration
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
-            $table->id();
-            $table->string('tittle');
+            $table->bigIncrements('id');
+            $table->string('title');
             $table->date('date');
             $table->longText('img');
             $table->longText('content');
-            $table->integer('views');
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        //
     }
 }
