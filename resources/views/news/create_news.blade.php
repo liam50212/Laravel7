@@ -7,7 +7,7 @@
 @section('main')
     <div class="container">
 
-        <form action="/news/store" method="POST" class="">
+        <form action="/news/store" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="tittle">標題</label>
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label for="">圖片</label>
-                <input type="text" id="img" name="img">
+                <input type="file" accept="image/*" id="img" name="img">
             </div>
             <div class="form-group">
                 <label for="">內容</label>

@@ -94,7 +94,7 @@
                             <i class="bi bi-person-circle"></i>
                         </a>
                         <div class="dropdown-menu position-absolute" ; aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="./log-in.html">Login</a>
+                            <a class="dropdown-item" href="/home">Login</a>
                         </div>
                     </ul>
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-    <form action="/news/update/{{$news->id}}" method="POST">
+    <form action="/news/update/{{$news->id}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="tittle">標題</label>
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="">圖片</label>
-            <input type="text" id="img" name="img" value="{{$news->img}}">
+            <input type="file" accept="image/*" id="img" name="img" value="{{$news->img}}">
         </div>
         <div class="form-group">
             <label for="">內容</label>
