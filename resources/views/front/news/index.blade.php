@@ -50,7 +50,7 @@
 
 @section('js')
 
-<script>
+{{-- <script>
     document.querySelectorAll('.delete').forEach(function (btn)){
         btn.addEventListener('click',function (){
             if(confirm('確定要刪除嗎')) {
@@ -58,6 +58,6 @@
             }
         })
     });
-</script>
+</script> --}}
 
 @endsection

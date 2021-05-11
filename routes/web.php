@@ -34,10 +34,22 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/delete/{id}','NewsController@delete');
     });
 });
+
 // product
 Route::prefix('products')->group(function () {
     Route::get('/','FrontController@productsIndex');
     Route::get('/content/{id}','FrontController@productsContent');    
+});
+
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::prefix('products')->group(function () {
+        Route::get('/','ProductsController@index');
+        Route::get('/create','ProductsController@create');
+        Route::post('/store','ProductsController@store');
+        Route::get('/edit/{id}','ProductsController@edit');
+        Route::post('/update/{id}','ProductsController@update');
+        Route::get('/delete/{id}','ProductsController@delete');
+    });
 });
 
 Auth::routes();
