@@ -5,8 +5,7 @@
 @endsection
 
 @section('main')
-    <div class="container">
-        <a href="/admin/products/create"><button>新增最新消息</button></a>
+    <a href="/admin/products/create"><button>新增最新消息</button></a>
     <hr>
     <table id="table_id" class="display">
         <thead>
@@ -15,7 +14,7 @@
                 <th>類型</th>
                 <th>名字</th>
                 <th>src</th>
-                <th>圖片</th>
+                {{-- <th>圖片</th> --}}
                 <th>價錢</th>
                 <th>主旨</th>
                 <th>編輯</th>
@@ -29,7 +28,7 @@
                 <td>{{$news->type}}</td>
                 <td>{{$news->name}}</td>
                 <td><img style="width: 300px;height: 200px;" src="{{$news->img}}"></td>
-                <td>{{$news->img}}</td>
+                {{-- <td>{{$news->img}}</td> --}}
                 <td>{{$news->price}}</td>
                 <td>{{$news->content}}</td>
                 <td>
@@ -46,7 +45,6 @@
         </tbody>
         @endforeach
     </table>
-    </div>
 @endsection
 
 @section('js')
