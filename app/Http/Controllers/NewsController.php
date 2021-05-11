@@ -59,13 +59,13 @@ class NewsController extends Controller
 
     public function delete($id)
     {
-        // $item = News::find($id);
-        // $old_image = $item->img;
-        // if(file_exists(public_path().$old_image)){
-        //     File::delete(public_path().$old_image);
-        // }
-        // $item->delete();
-        News::find($id)->delete();
+        $item = News::find($id);
+        $old_image = $item->img;
+        if(file_exists(public_path().$old_image)){
+            File::delete(public_path().$old_image);
+        }
+        $item->delete();
+        // News::find($id)->delete();
         return redirect('/admin/news');
     }
 

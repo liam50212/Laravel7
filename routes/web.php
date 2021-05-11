@@ -34,6 +34,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/delete/{id}','NewsController@delete');
     });
 });
+// product
+Route::prefix('products')->group(function () {
+    Route::get('/','FrontController@productsIndex');
+    Route::get('/content/{id}','FrontController@productsContent');    
+});
 
 Auth::routes();
 
