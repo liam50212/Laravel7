@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="">圖片</label>
-            <input type="file" accept="image/*" id="img" name="img" value="{{$news->img}}">
+            <input type="file" accept="image/*" id="img" name="img" value="{{asset($news->img)}}">
         </div>
         <div class="form-group">
             <label for="">價錢</label>

@@ -29,7 +29,7 @@
                 <td>{{$news->name}}</td>
                 <td><img style="width: 300px;height: 200px;" src="{{$news->img}}"></td>
                 {{-- <td>{{$news->img}}</td> --}}
-                <td>{{$news->price}}</td>
+                <td>${{$news->price}}</td>
                 <td>{{$news->content}}</td>
                 <td>
                     <a href="/admin/products/edit/{{$news->id}}">
@@ -51,7 +51,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <script>
     $(document).ready( function () {
-    $('#myTable').DataTable();
+    $('#table_id').DataTable();
 } );
 </script>
 @endsection

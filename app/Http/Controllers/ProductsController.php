@@ -23,6 +23,12 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $requsetData = $request->all();
+
+        // if($request->hasFile('img')) {
+        //     $file = $request->file('img');
+        //     $path = Stroage::disk('myfile')->putFile('product',$file);
+        //     $requsetData['img'] = $path;Stroage::disk('myfile')->url($path);
+        // } 
         
         if($request->hasFile('img')) {
             $file = $request->file('img');

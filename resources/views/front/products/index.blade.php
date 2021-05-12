@@ -197,7 +197,9 @@
             <svg viewBox="0 0 24 24">
                 <path fill="#000000" d="M4,5V7H21V5M4,11H21V9H4M4,19H21V17H4M4,15H21V13H4V15Z" />
             </svg>
-            <p>Product</p>
+            <a href="/">
+                <p>Product</p>
+            </a>
         </div>
         <div class="main">
             <img src="{{$news->img}}"
