@@ -16,6 +16,7 @@
                         {{-- {{dd($productType)}} --}}
                        <option value="{{$productType->id}}">{{$productType->name}}</option> 
                     @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="name">名字</label>
