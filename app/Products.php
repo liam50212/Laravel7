@@ -33,6 +33,10 @@ class Products extends Model
     /**
      * @var array
      */
-    protected $fillable = ['type', 'name', 'img', 'content', 'price', 'created_at', 'updated_at'];
+    protected $fillable = ['type_id', 'name', 'img', 'content', 'price', 'created_at', 'updated_at'];
 
+    public function productType()
+    {
+        return $this->hasOne('App\ProductType','id','type_id');
+    }
 }

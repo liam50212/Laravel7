@@ -52,6 +52,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     });
 });
 
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::prefix('product_type')->group(function () {
+        Route::get('/','ProductTypeController@index');
+        Route::get('/create','ProductTypeController@create');
+        Route::post('/store','ProductTypeController@store');
+        Route::get('/edit/{id}','ProductTypeController@edit');
+        Route::post('/update/{id}','ProductTypeController@update');
+        Route::get('/delete/{id}','ProductTypeController@delete');
+    });
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -5,18 +5,18 @@
 @endsection
 
 @section('main')
-    <a href="/admin/products/create"><button>新增最新消息</button></a>
+    <a href="/admin/product_type/create"><button>新增最新消息</button></a>
     <hr>
     <table id="table_id" class="display">
         <thead>
             <tr>
                 <th>編號</th>
-                <th>類型</th>
+                {{-- <th>類型</th> --}}
                 <th>名字</th>
-                <th>src</th>
+                {{-- <th>src</th> --}}
                 {{-- <th>圖片</th> --}}
-                <th>價錢</th>
-                <th>主旨</th>
+                {{-- <th>價錢</th>
+                <th>主旨</th> --}}
                 <th>編輯</th>
                 <th>刪除</th>
             </tr>
@@ -25,19 +25,19 @@
         <tbody>
             <tr>
                 <td>{{$news->id}}</td>
-                <td>{{$news->productType->name}}</td>
+                {{-- <td>{{$news->type_id}}</td> --}}
                 <td>{{$news->name}}</td>
-                <td><img style="width: 300px;height: 200px;" src="{{$news->img}}"></td>
+                {{-- <td><img style="width: 300px;height: 200px;" src="{{$news->img}}"></td> --}}
                 {{-- <td>{{$news->img}}</td> --}}
-                <td>${{$news->price}}</td>
-                <td>{{$news->content}}</td>
+                {{-- <td>${{$news->price}}</td> --}}
+                {{-- <td>{{$news->content}}</td> --}}
                 <td>
-                    <a href="/admin/products/edit/{{$news->id}}">
+                    <a href="/admin/product_type/edit/{{$news->id}}">
                         <button>編輯</button>
                     </a>
                 </td>
                 <td>
-                    <a class="btn" href="/admin/products/delete/{{$news->id}}">
+                    <a class="btn" href="/admin/product_type/delete/{{$news->id}}">
                         <button class="delete btn">刪除</button>
                     </a>
                 </td>

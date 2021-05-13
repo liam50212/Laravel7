@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Products;
 use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class ProductsController extends Controller
+class ProductTypeController extends Controller
 {
     //
     public function index()
     {
-        $newsData = Products::with('productType')->get();
-        return view('admin.products.index',compact('newsData'));
+        $newsData = ProductType::get();
+        return view('admin.product_type.index',compact('newsData'));
     }
 
     public function create()
     {
-        
-        $productTypes = ProductType::get();
-        return view('admin.products.create',compact('productTypes'));
+        return view('admin.product_type.create');
     }
 
     public function store(Request $request)
@@ -39,20 +36,19 @@ class ProductsController extends Controller
             $requsetData['img'] = $path;
         }        
         
-        Products::create($requsetData);
-        return redirect('/admin/products');
+        ProductType::create($requsetData);
+        return redirect('/admin/product_type');
     }
 
     public function edit($id)
     {
-        $productTypes = ProductType::get();
-        $news = Products::with('productType')->find($id);
-        return view('admin.products.edit',compact('news','productTypes'));
+        $news = ProductType::find($id);
+        return view('admin.product_type.edit',compact('news'));
     }
 
     public function update($id,Request $request)
     {
-        $item = Products::find($id);
+        $item = ProductType::find($id);
 
         $requsetData = $request->all();
         if($request->hasFile('img')) {
@@ -64,19 +60,19 @@ class ProductsController extends Controller
         }
 
         $item->update($requsetData);
-        return redirect('/admin/products');
+        return redirect('/admin/product_type');
     }
 
     public function delete($id)
     {
-        $item = Products::find($id);
+        $item = ProductType::find($id);
         $old_image = $item->img;
         if(file_exists(public_path().$old_image)){
             File::delete(public_path().$old_image);
         }
         $item->delete();
         // News::find($id)->delete();
-        return redirect('/admin/products');
+        return redirect('/admin/product_type');
     }
 
     private function fileUpload($file,$dir){
