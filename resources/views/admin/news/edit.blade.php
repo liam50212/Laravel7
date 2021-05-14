@@ -16,7 +16,7 @@
             <input type="date" id="date" name="date" value="{{$news->date}}">
         </div>
         <div class="form-group">
-            <label for="">圖片</label>
+            <label for="">主要圖片</label>
             <input type="file" accept="image/*" id="img" name="img" value="{{$news->img}}">
         </div>
         <div class="form-group">

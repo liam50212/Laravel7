@@ -39,4 +39,9 @@ class Products extends Model
     {
         return $this->hasOne('App\ProductType','id','type_id');
     }
+
+    public function productImgs()
+    {
+        return $this->hasMany('App\ProuctImg','product_id','id');
+    }
 }

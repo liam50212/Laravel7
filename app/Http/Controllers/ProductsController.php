@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Products;
+use App\ProuctImg;
 use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -39,14 +40,26 @@ class ProductsController extends Controller
             $requsetData['img'] = $path;
         }        
         
-        Products::create($requsetData);
+        $product = Products::create($requsetData);
+
+        $imgs = $request->file('imgs');
+        foreach($imgs as $img){
+            $path = $this->fileUpload($img,'product');
+            
+            ProuctImg::create([
+                'product_id'=>$product->id,
+                'img'=>$path
+            ]);
+        }
+        
         return redirect('/admin/products');
     }
 
     public function edit($id)
     {
         $productTypes = ProductType::get();
-        $news = Products::with('productType')->find($id);
+        $news = Products::with('productType','productImgs')->find($id);
+        // dd($news);
         return view('admin.products.edit',compact('news','productTypes'));
     }
 

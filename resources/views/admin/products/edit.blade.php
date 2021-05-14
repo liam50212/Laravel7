@@ -20,8 +20,20 @@
             <input type="text" id="name" name="name" value="{{$news->name}}">
         </div>
         <div class="form-group">
-            <label for="">圖片</label>
+            <label for="">主要圖片</label>
             <input type="file" accept="image/*" id="img" name="img" value="{{asset($news->img)}}">
+        </div>
+        <div class="form-group other-imgs">
+            <label for="imgs">其他圖片</label>
+            {{-- {{dd($news->productImgs)}} --}}
+            @foreach ($news->productImgs as $img) 
+                <div class="img-wrapper">
+                    <img src="{{$img->img}}" alt="" width="80px">   
+                    <div class="img-delete" data-img="{{$img->id}}">X</div>
+                </div>
+                <input type="file" accept="image/*" id="imgs" name="imgs[]" multiple>
+                {{-- <button class="del" onclick="clean();" >X</button> --}}
+            @endforeach
         </div>
         <div class="form-group">
             <label for="">價錢</label>
@@ -38,5 +50,17 @@
 @endsection
 
 @section('js')
+    <script>
+        document.querySelector('.other-imgs').addEventListener('click', function(e){
+            console.log(1);
+            if(e.target && e.target.matches('.img-delete')){
+                var test = e.target.closest('.img-wrapper');
+                test.style.display = 'none';
+                test.innerHTML = "";
+                // console.log(1);
+                // e.style.display = 'none';
+            }
+        });
 
+    </script>
 @endsection

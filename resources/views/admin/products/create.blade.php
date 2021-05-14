@@ -23,8 +23,12 @@
                 <input type="text" id="name" name="name">
             </div>
             <div class="form-group">
-                <label for="">圖片</label>
+                <label for="img">主要圖片</label>
                 <input type="file" accept="image/*" id="img" name="img">
+            </div>
+            <div class="form-group">
+                <label for="imgs">其他圖片</label>
+                <input type="file" accept="image/*" id="imgs" name="imgs[]" multiple>
             </div>
             <div class="form-group">
                 <label for="">價錢</label>

@@ -25,7 +25,7 @@
         <tbody>
             <tr>
                 <td>{{$news->id}}</td>
-                <td>{{$news->productType->name}}</td>
+                <td>{{$news->type_id}}</td>
                 <td>{{$news->name}}</td>
                 <td><img style="width: 300px;height: 200px;" src="{{$news->img}}"></td>
                 {{-- <td>{{$news->img}}</td> --}}
