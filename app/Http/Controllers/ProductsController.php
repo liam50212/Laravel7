@@ -92,6 +92,15 @@ class ProductsController extends Controller
         return redirect('/admin/products');
     }
 
+    public function delete_img(Request $request)
+    {
+        $img = ProuctImg::find($request->id);
+        File::delete(public_path().$img->img);
+        $img->delete();
+
+        return 'success';
+    }
+
     private function fileUpload($file,$dir){
         //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
         if( ! is_dir('upload/')){

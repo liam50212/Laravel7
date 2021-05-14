@@ -49,6 +49,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/edit/{id}','ProductsController@edit');
         Route::post('/update/{id}','ProductsController@update');
         Route::get('/delete/{id}','ProductsController@delete');
+        Route::post('/delete_img','ProductsController@delete_img');
     });
 });
 
