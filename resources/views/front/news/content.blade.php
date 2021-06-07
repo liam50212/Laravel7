@@ -13,8 +13,9 @@
 </div>
 <hr>
 <div class="section-text">
-    {{$newsDetail->content}}
-    <img src="{{ asset('./img/php-index3.jpg') }}" alt="玩遍百大經典小鎮 集章抽好禮" width="70%">
+    {{-- {{$newsDetail->content}} --}}
+    {!! $newsDetail->content !!}
+    {{-- <img src="{{ asset('./img/php-index3.jpg') }}" alt="玩遍百大經典小鎮 集章抽好禮" width="70%"> --}}
 </div>
 
 @endsection

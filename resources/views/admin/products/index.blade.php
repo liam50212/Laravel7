@@ -30,7 +30,7 @@
                 <td><img style="width: 300px;height: 200px;" src="{{$news->img}}"></td>
                 {{-- <td>{{$news->img}}</td> --}}
                 <td>${{$news->price}}</td>
-                <td>{{$news->content}}</td>
+                {{-- <td>{{$news->content}}</td> --}}
                 <td>
                     <a href="/admin/products/edit/{{$news->id}}">
                         <button>編輯</button>

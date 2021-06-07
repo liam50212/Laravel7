@@ -189,7 +189,7 @@
             </div>
             <div class="half">
               <div class="description">
-                <p>{{$newsDetail->content}}</p>
+                <p>{!! $newsDetail->content !!}</p>
               </div>
             </div>
           </div>
@@ -199,7 +199,7 @@
               <h3>Andrew Palmer</h3>
             </div>
             <div class="action">
-              <button type="button">Add to cart</button>
+              <button type="button">加入購物車</button>
             </div>
           </div>
         </div>

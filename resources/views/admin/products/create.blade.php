@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     
 @endsection
 
@@ -36,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label for="">內容</label>
-                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                <textarea name="content" id="summernote" cols="30" rows="10"></textarea>
             </div>
             <button type="submit">送出</button>
         </form>    
@@ -44,5 +45,10 @@
 @endsection
 
 @section('js')
-    
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+</script>
 @endsection

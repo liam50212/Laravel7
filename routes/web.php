@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::post('/contact/store','ContactController@store');
+
 Route::prefix('news')->group(function () {
     Route::get('/','FrontController@newsIndex');
     Route::get('/content/{id}','FrontController@newsContent');    
@@ -39,6 +41,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 Route::prefix('products')->group(function () {
     Route::get('/','FrontController@productsIndex');
     Route::get('/content/{id}','FrontController@productsContent');    
+});
+
+Route::prefix('shopping_cart')->group(function () {
+    Route::post('/add','ShoppingCartContorller@add');
+    Route::get('/content','ShoppingCartContorller@content');
+    
 });
 
 Route::prefix('admin')->middleware('auth')->group(function () {

@@ -2,8 +2,14 @@
 
 @section('css')
 {{-- <link rel="stylesheet" href="{{ asset('css/XXX.css') }}">
+
+{{-- {!! htmlScriptTagJsApi($configuration) !!} --}}
+
 <style>
-</style> --}}
+    .v{
+        position: absolute;
+    }
+</style>
 @endsection
 
 @section('main')
@@ -556,6 +562,9 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1">內容</label>
                     <input type="" class="form-control" id="exampleInputPassword1" name="content">
+                </div>
+                <div class="form-group test">
+                    {!! htmlFormSnippet() !!}
                 </div>
                 <button type="submit" class="btn btn-lg btn-block btn-primary mb-2">Button</button>
                 <h6 style="font-size: 5px;">Chicharrones blog helvetica normcore iceland tousled brook viral

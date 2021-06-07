@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 
 @section('main')
@@ -22,14 +22,21 @@
                 <input type="file" accept="image/*" id="img" name="img">
             </div>
             <div class="form-group">
-                <label for="">內容</label>
-                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                <label for="content">內容</label>
+                <textarea name="content" id="summernote" cols="30" rows="10"></textarea>
             </div>
+            {{-- <div id="summernote"><p></p></div> --}}
             <button type="submit">送出</button>
-        </form>    
+        </form>  
+        
     </div>
 @endsection
 
 @section('js')
-    
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+          });
+    </script>
 @endsection

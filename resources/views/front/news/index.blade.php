@@ -32,7 +32,7 @@
                 <span>經典小鎮升級3.0正式開跑　小鎮逗鎮趣 集章抽好禮</span>
             </a>
             <h5>{{$news->date}}</h5>
-            <h5>{{$news->content}}</h5>
+            <h5>{!! $news->content !!}</h5>
             {{-- <a href="/news/edit/{{$news->id}}">
                 <button>編輯</button>
             </a>
