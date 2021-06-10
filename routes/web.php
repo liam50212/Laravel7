@@ -45,8 +45,13 @@ Route::prefix('products')->group(function () {
 
 Route::prefix('shopping_cart')->group(function () {
     Route::post('/add','ShoppingCartContorller@add');
-    Route::get('/content','ShoppingCartContorller@content');
+    Route::post('/delete','ShoppingCartContorller@delete');
+    Route::post('/update','ShoppingCartContorller@update');
     
+    Route::get('/list','ShoppingCartContorller@list');
+    Route::get('/payment','ShoppingCartContorller@payment');
+    Route::post('/paymentCheck','ShoppingCartContorller@paymentCheck');
+
 });
 
 Route::prefix('admin')->middleware('auth')->group(function () {

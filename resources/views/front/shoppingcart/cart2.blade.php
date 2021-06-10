@@ -148,64 +148,73 @@
                     <span class="text" style="left: 845px">完成訂購</span>
                 </div>
                 <hr class="mt-5">
-                <h2 class="pt-3 ml-5 mb-4">付款方式</h2>
-                <div class="pay-input mb-5 ml-5">
-                    <input type="radio" name="color">
-                    <span>信用卡付款</span>
-                </div>
-                <hr>
-                <div class="pay-input mb-5 ml-5">
-                    <input type="radio" name="color">
-                    <span>網路 ATM</span>
-                </div>
-                <hr>
-                <div class="pay-input mb-5 ml-5">
-                    <input type="radio" name="color">
-                    <span>超商代碼</span>
-                </div>
-                <hr>
-                <h2 class="pt-3 ml-5 mb-4">運送方式</h2>
-                <div class="pay-input mb-5 ml-5">
-                    <input type="radio" name="color2">
-                    <span>黑貓宅配</span>
-                </div>
-                <hr>
-                <div class="pay-input mb-4 ml-5">
-                    <input type="radio" name="color2">
-                    <span>超商店到店</span>
-                </div>
-                <hr>
-                <div class="total">
-                    <div class="total-1 text-right mr-5">
-                        <span class="total1-span">數量:</span>
-                        <span>3</span>
+                <form action="/shopping_cart/paymentCheck" method="POST">
+                    @csrf
+                    <div>
+                        <div>
+                            <h2 class="h4 pb-3">付款方式</h2>
+                            @php
+                                $payment = Session::get('payment');
+                            @endphp
+                            <label class="pl-5" style="font-size: 20px;">
+                                <input type="radio" name="payment" value="credit" @if ($payment == "credit") checked @endif required> 信用卡付款
+                            </label>
+                            <hr>
+                            <label class="pl-5" style="font-size: 20px;">
+                                <input type="radio" name="payment" value="atm" @if ($payment == "atm") checked @endif required> 網路 ATM
+                            </label>
+                            <hr>
+                            <label class="pl-5" style="font-size: 20px;">
+                                <input type="radio" name="payment" value="cvs" @if ($payment == "cvs") checked @endif required> 超商代碼
+                            </label>
+                        </div>
+                        <hr>
+                        <div>
+                            <h2 class="h4 pb-3">運送方式</h2>
+                            @php
+                                $shipment = Session::get('shipment');
+                            @endphp
+                            <label class="pl-5" style="font-size: 20px;">
+                                <input type="radio" name="shipment" value="home" @if ($shipment == "home") checked @endif required>黑貓宅配
+                            </label>
+                            <hr>
+                            <label class="pl-5" style="font-size: 20px;">
+                                <input type="radio" name="shipment" value="store" @if ($shipment == "store") checked @endif required>超商店到店
+                            </label>
+                        </div>
+                        <hr>
                     </div>
-                    <div class="total-2 text-right mr-5">
-                        <span class="mr-5">小計:</span>
-                        <span class="ml-5">$24.90</span>
+                    <div>
+                        <div class="d-flex flex-column align-items-end">
+                            <div class="d-flex justify-content-between" style="line-height: 28px; width: 236px;">
+                                <div class="text-black-50" style="font-size: 14px;">數量:</div>
+                                <div>{{\Cart::getTotalQuantity()}}</div>
+                            </div>
+                            @php
+                                $subTotal = \Cart::getSubTotal();
+                                $shipment = \Cart::getSubTotal() > 1000 ? 0 : 60;
+                            @endphp
+                            <div class="d-flex justify-content-between" style="line-height: 28px;  width: 236px;">
+                                <div class="text-black-50" style="font-size: 14px;">小計:</div>
+                                <div>${{number_format($subTotal)}}</div>
+                            </div>
+                           
+                            <div class="d-flex justify-content-between" style="line-height: 28px;  width: 236px;">
+                                <div class="text-black-50" style="font-size: 14px;">運費:</div>
+                                <div>${{$shipment}}</div>
+                            </div>
+                            <div class="d-flex justify-content-between" style="line-height: 28px;  width: 236px;">
+                                <div class="text-black-50" style="font-size: 14px;">總計:</div>
+                                <div>${{number_format($subTotal+$shipment)}}</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="total-3 text-right mr-5">
-                        <span class="mr-5">運費:</span>
-                        <span class="ml-5">$24.90</span>
+                    <hr>
+                    <div id="btn_box" class="d-flex justify-content-between align-items-center pt-1">
+                        <a href="/shopping_cart/list" class="btn btn btn-outline-primary py-2 px-5">上一步</a>
+                        <button class="btn btn-primary py-2 px-5 next">下一步</button>
                     </div>
-                    <div class="total-4 text-right mr-5">
-                        <span class="mr-5">總計:</span>
-                        <span class="ml-5">$24.90</span>
-                    </div>
-                    <hr style="width: 880px;">
-                </div>
-                <div class="section-next d-flex justify-content-between px-4 mb-5">
-                    <div class="return mb-5">
-                        <a href="./cart_v02.html">
-                            <button type="button" class="btn btn-primary bg-white text-primary">上一步</button>
-                        </a>
-                    </div>
-                    <div class="next">
-                        <a href="./cart3.html">
-                            <button type="button" class="btn btn-primary">下一步</button>
-                        </a>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </main>
@@ -303,16 +312,16 @@
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-        crossorigin="anonymous"></script>
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

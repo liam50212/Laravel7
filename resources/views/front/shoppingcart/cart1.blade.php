@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.css"
+        integrity="sha512-/D4S05MnQx/q7V0+15CCVZIeJcV+Z+ejL1ZgkAcXE1KZxTE4cYDvu+Fz+cQO9GopKrDzMNNgGK+dbuqza54jgw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         * {
@@ -113,7 +116,7 @@
                         <a class="nav-link " href="#">Blog <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Portfolio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/products">Product <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
@@ -122,7 +125,7 @@
                         <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a href="./cart.html" class="nav-link" href="#">
+                        <a href="/shopping_cart/list" class="nav-link" href="#">
                             <i class="bi bi-cart-fill"></i>
                         </a>
                     </li>
@@ -170,49 +173,57 @@
                 </div>
                 <hr class="mt-5" style="width: 880px;">
                 <h2 class="pt-2 ml-5 mb-4">訂單明細</h2>
+
                 <div class="section mt-5">
                     <div id="app" class="menu  container position-relative">
+                        @foreach ($cartCollection as $product)
                         <div class="food1 d-flex mb-4" v-for="(item, index) in itemList" :key="item.id">
-                            <!-- <img class="ml-5" v-bind:src="" alt=""> -->
+                            {{-- @php
+                                    $img = $product->attributes->img
+                                @endphp --}}
+                            <button type="button" class="delBtn" data-id="{{$product->id}}">X</button>
+                            <img class="ml-5" src="{{asset($product->attributes->img)}}" alt="">
                             <div class="food-text">
-                                <h5></h5>
-                                <div></div>
+                                <h5>{{$product->name}}</h5>
+                                <div>{{$product->price}}</div>
                                 <hr style="width: 880px;">
                             </div>
                             <div class="section-price position-absolute d-flex" style="right: 20px;">
-                                <button class="mr-3" @click="handleSub(item)">-</button>
-                                <div style="width: 30px; height: 30px; border: 1px solid black; text-align: center;">
-                                    
-                                </div>
-                                <button class="mx-3" @click="handlePlus(item)">+</button>
-                                <div class="price"><span>$</span></div>
+                                <button class="mr-3 minus">-</button>
+                                <input class="qty" type="text" data-id="{{$product->id}}" value="{{$product->quantity}}"
+                                    oninput="value=value.replace('-', '')">
+                                <button class="mx-3 plus">+</button>
+                            </div>
+                            $<div class="price" data-price="{{$product->price}}">{{number_format($product->price)}}
                             </div>
                         </div>
+                        @endforeach
                         <div class="total">
                             <div class="count mb-2 ml-auto w-25  d-flex align-items-center">
                                 <span class="count-span">數量:</span>
+                                <div id="total-Qty"></div>
                             </div>
-                            <div class="amount mb-2 ml-auto w-25  d-flex align-items-center"><span
-                                    class="count-span">小計:</span>
-                                
+                            <div class="amount mb-2 ml-auto w-25  d-flex align-items-center">
+                                <span class="count-span">小計:</span>
+                                <div id="sub-Price"></div>
                             </div>
-                            <div class="amount mb-2 ml-auto w-25  d-flex align-items-center"><span
-                                    class="count-span">運費:</span>
-                                $24.90
+                            <div class="amount mb-2 ml-auto w-25  d-flex align-items-center">
+                                <span class="count-span">運費:</span>
+                                <div id="shipment-Price"></div>
                             </div>
-                            <div class="amount mb-2 ml-auto w-25  d-flex align-items-center"><span
-                                    class="count-span">總計:</span>
-                                
+                            <div class="amount mb-2 ml-auto w-25  d-flex align-items-center">
+                                <span class="count-span">總計:</span>
+                                <div id="total-Price"></div>
                             </div>
                             <hr style="width: 880px;">
                         </div>
                         <div class="section-next d-flex justify-content-between px-4 mb-3">
                             <div class="return" style="font-size:20px">
                                 <i class="bi bi-arrow-left-short"></i>
-                                <span>返回購物</span>
+                                <a href="/products"><span>返回購物</span></a>
                             </div>
                             <div class="next">
-                                <a href="./cart2.html">
+                                <a href="/shopping_cart/payment">
                                     <button type="button" class="btn btn-primary">下一步</button>
                                 </a>
                             </div>
@@ -315,7 +326,153 @@
     </footer>
 
 
-    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js"
+        integrity="sha512-CrNI25BFwyQ47q3MiZbfATg0ZoG6zuNh2ANn/WjyqvN4ShWfwPeoCOi9pjmX4DoNioMQ5gPcphKKF+oVz3UjRw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+        window.addEventListener('load',shoppingCartCalc());
+        var minusBtns = document.querySelectorAll('.minus');
+        var plusBtns = document.querySelectorAll('.plus');
+        var qtyInputs = document.querySelectorAll('.qty');
+        var delBtns = document.querySelectorAll('.delBtn');
+
+        function calcProductPrice(element) {
+            // 觸發事件的元素的父層
+            var controlArea = element.parentElement;
+            var input = controlArea.querySelector('.qty');
+            var price = controlArea.nextElementSibling;
+            newPrice = (price.getAttribute('data-price') * input.value).toLocaleString();
+            price.innerText = newPrice;
+        }
+
+
+        function shoppingCartCalc() {
+            var totalQty = 0;
+            var subPrice = 0;
+            var shipmentPrice = 60;
+            var totalPrice = 0;
+
+            var qtyInputs = document.querySelectorAll('.qty');
+            qtyInputs.forEach(function (qtyInput) {
+                totalQty += Number(qtyInput.value);
+
+                var price = qtyInput.parentElement.nextElementSibling.getAttribute('data-price');
+                subPrice += price * qtyInput.value;
+            });
+
+            document.querySelector('#total-Qty').innerText = totalQty.toLocaleString();
+            document.querySelector('#sub-Price').innerText = subPrice.toLocaleString();
+
+
+            if(subPrice > 1000){
+                shipmentPrice = 0;
+            }
+            document.querySelector('#shipment-Price').innerText = shipmentPrice.toLocaleString();
+
+
+            totalPrice = subPrice + shipmentPrice;
+            document.querySelector('#total-Price').innerText = totalPrice.toLocaleString();
+            
+        }
+
+        function shoppingCartUpdate(element,input,qty) {
+            var productId = input.getAttribute('data-id');
+
+
+            var formData = new FormData();
+            formData.append('_token','{{ csrf_token() }}');
+            formData.append('productId',productId);
+            formData.append('qty',qty);
+
+            fetch('/shopping_cart/update', {
+                'method':'POST',
+                'body':formData
+            }).then(function (response) {
+                return response.text();
+            }).then(function (data)  {
+                input.value = data;
+                calcProductPrice(element);
+                shoppingCartCalc()
+            });
+          
+        }
+
+
+        plusBtns.forEach(function (plusBtn) {
+            plusBtn.addEventListener('click',function () {
+                // 當前元素前面的元素
+                var input = this.previousElementSibling;
+                // input.value = input.value*1 + 1;強制轉型
+                var qty = 1;
+                
+                // 取得price元素
+                shoppingCartUpdate(this,input,qty);
+                
+            });
+        })
+
+        minusBtns.forEach(function (minusBtn) {
+            minusBtn.addEventListener('click',function () {
+                // 當前元素後面的元素
+                var input = this.nextElementSibling;
+                // input.value = input.value*1 - 1;強制轉型
+                var qty = -1;
+
+                if(input.value > 1){
+                    shoppingCartUpdate(this,input,qty);
+                }
+    
+                // 取得price元素
+                
+            })
+        })
+
+        qtyInputs.forEach(function (qtyInput) {
+            qtyInput.addEventListener('change',function () {
+                var input = this;
+                if(input.value < 1){
+                    input.value = 1;
+                }
+                calcProductPrice(this);
+                shoppingCartCalc()
+            })
+        })
+
+        delBtns.forEach(function (delBtn){
+            delBtn.addEventListener('click',function () {
+                var formData = new FormData();
+                formData.append('_token','{{ csrf_token() }}');
+                formData.append('productId',this.getAttribute('data-id'));
+                delBtnElement = this;
+
+                fetch('/shopping_cart/delete',{
+                    'method':'POST',
+                    'body':formData
+                }).then(function (response) {
+                    return response.text();
+                }).then(function (data){
+                    if(data == 'success'){
+                        var productArea = delBtnElement.parentElement;
+                        // productArea.nextElementSibling.remove();
+                        productArea.remove();
+                        shoppingCartCalc();
+                        Swal.fire({
+                            icon: 'success',
+                            title: '移除成功',
+                            showConfirmButton: false,
+                            timer: 700
+                        })
+                    }
+                });
+               
+            });
+        });
+    </script>
+
+
+    {{-- <script src="https://unpkg.com/vue/dist/vue.min.js"></script> --}}
 
     <script>
         // var app = new Vue({
@@ -380,16 +537,16 @@
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-        crossorigin="anonymous"></script>
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
